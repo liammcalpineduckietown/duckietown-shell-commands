@@ -2,8 +2,8 @@ version: '3.2'
 services:
 
   camera:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-camera
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-camera
     restart: unless-stopped
     network_mode: host
     pid: host
@@ -16,8 +16,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   tof:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-tof
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-tof
     restart: unless-stopped
     network_mode: host
     environment:
@@ -29,8 +29,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   imu:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-imu
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-imu
     restart: unless-stopped
     network_mode: host
     environment:
@@ -42,8 +42,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   power-button:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-power-button
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-power-button
     restart: unless-stopped
     network_mode: host
     environment:
@@ -55,8 +55,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   wheel-encoders:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-wheel-encoders
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-wheel-encoders
     restart: unless-stopped
     network_mode: host
     environment:
@@ -68,8 +68,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   wheels:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-wheels
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-wheels
     restart: unless-stopped
     network_mode: host
     environment:
@@ -81,8 +81,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   leds:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-leds
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-leds
     restart: unless-stopped
     network_mode: host
     environment:
@@ -94,8 +94,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   display:
-    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
-    container_name: ros1-display
+    image: ${REGISTRY}/duckietown/dt-ros2-interface:ente-${ARCH}
+    container_name: ros2-display
     restart: unless-stopped
     network_mode: host
     environment:
@@ -107,8 +107,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   ros:
-    image: ${REGISTRY}/duckietown/dt-ros-commons:ente-${ARCH}
-    container_name: ros1
+    image: ${REGISTRY}/duckietown/dt-ros2-commons:ente-${ARCH}
+    container_name: ros2
     restart: unless-stopped
     network_mode: host
     volumes:
@@ -116,8 +116,8 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
 
   rosbridge-websocket:
-    image: ${REGISTRY}/duckietown/dt-rosbridge-websocket:ente-${ARCH}
-    container_name: ros1-rosbridge-websocket
+    image: ${REGISTRY}/duckietown/dt-ros2bridge-websocket:ente-${ARCH}
+    container_name: ros2-rosbridge-websocket
     restart: unless-stopped
     network_mode: host
     environment:
