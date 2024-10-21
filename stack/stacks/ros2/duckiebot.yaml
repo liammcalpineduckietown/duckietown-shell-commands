@@ -1,0 +1,142 @@
+version: '3.2'
+services:
+
+  camera:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-camera
+    restart: unless-stopped
+    network_mode: host
+    pid: host
+    environment:
+      DT_LAUNCHER: sensor-camera
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  tof:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-tof
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: sensor-tof
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  imu:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-imu
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: sensor-imu
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  power-button:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-power-button
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: sensor-power-button
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  wheel-encoders:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-wheel-encoders
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: sensor-wheel-encoders
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  wheels:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-wheels
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: actuator-wheels
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  leds:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-leds
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: actuator-leds
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  display:
+    image: ${REGISTRY}/duckietown/dt-ros-interface:ente-${ARCH}
+    container_name: ros1-display
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: actuator-display
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  ros:
+    image: ${REGISTRY}/duckietown/dt-ros-commons:ente-${ARCH}
+    container_name: ros1
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  rosbridge-websocket:
+    image: ${REGISTRY}/duckietown/dt-rosbridge-websocket:ente-${ARCH}
+    container_name: ros1-rosbridge-websocket
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_SUPERUSER: 1
+    volumes:
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  car-interface:
+    image: ${REGISTRY}/duckietown/dt-core:ente-${ARCH}
+    container_name: car-interface
+    restart: always
+    network_mode: host
+    environment:
+      DT_SUPERUSER: 1
+    volumes:
+      - /data:/data
+      # dtps sockets
+      - /data/ramdisk/dtps:/dtps
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
