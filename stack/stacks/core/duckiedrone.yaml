@@ -1,0 +1,37 @@
+services:
+
+  pid-controller:
+    image: ${REGISTRY}/duckietown/dt-core:ente-${ARCH}
+    container_name: pid-controller
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: duckiedrone-pid-controller-node
+    volumes:
+      - /data:/data
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  state-estimator:
+    image: ${REGISTRY}/duckietown/dt-core:ente-${ARCH}
+    container_name: state-estimator
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: duckiedrone-state-estimation-node
+    volumes:
+      - /data:/data
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+  visual-odometry:
+    image: ${REGISTRY}/duckietown/dt-core:ente-${ARCH}
+    container_name: visual-odometry
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DT_LAUNCHER: duckiedrone-visual-odometry
+    volumes:
+      - /data:/data
+      # avahi socket
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
