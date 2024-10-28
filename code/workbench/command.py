@@ -82,7 +82,9 @@ class DTCommand(DTCommandAbs):
             parsed.machine = parsed.machine.lower()
             if parsed.machine.endswith(".local"):
                 parsed.machine = parsed.machine[:-6]
-
+        else:
+            if not parsed.local:
+                parsed.machine = parsed.robot
 
         # load project
         parsed.workdir = os.path.abspath(parsed.workdir)

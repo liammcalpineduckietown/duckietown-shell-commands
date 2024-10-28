@@ -34,6 +34,19 @@ class DTCommandConfiguration(DTCommandConfigurationAbs):
             default=None,
             help="Docker socket or robot name to build the agent on"
         )
+
+        parser.add_argument(
+            "-R",
+            "--robot",
+            default=None,
+            help="Name of the robot we want to build the code on",
+        )
+        parser.add_argument(
+            "--local",
+            default = False,
+            action = "store_true",
+            help = "should we build the image on the local machine instead of the robot"
+        )
         parser.add_argument(
             "-u",
             "--username",

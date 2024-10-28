@@ -68,6 +68,12 @@ class DTCommandConfiguration(DTCommandConfigurationAbs):
             help="Branch to use if specifying a test branch of the recipes repository",
         )
 
+        parser.add_argument(
+            "--local",
+            action="store_true",
+            default=False,
+            help="Should we run the code on the local machine rather than the robot?",
+        )
 
         parser.add_argument(
             "--keep",

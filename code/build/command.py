@@ -27,6 +27,9 @@ class DTCommand(DTCommandAbs):
         parsed.workdir = os.path.abspath(parsed.workdir)
         project = DTProject(parsed.workdir)
 
+        if not parsed.local:
+            parsed.machine = parsed.robot
+
         # Make sure the project recipe is present
         if parsed.recipe is not None:
             if project.needs_recipe:
