@@ -182,7 +182,7 @@ def launch_viewer(robot: str, app: str, *, verbose: bool = False, window_args: O
 
 
 class DuckietownViewerInstance:
-    _BACKEND_DOCKER_IMAGE = "{registry}/duckietown/dt-duckietown-viewer:{distro}-amd64"
+    _BACKEND_DOCKER_IMAGE = "{registry}/duckietown/dt-duckietown-viewer:{distro}"
     _BACKEND_REMOTE_PORT = 8000
     _KNOWN_APPS = [
         "image_viewer",
