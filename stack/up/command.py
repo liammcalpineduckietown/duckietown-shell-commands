@@ -69,15 +69,6 @@ class DTCommand(DTCommandAbs):
         project_name = parsed.project or stack.replace("/", "_")
         robot: str = parsed.machine.replace(".local", "")
         hostname: str = best_host_for_robot(parsed.machine)
-        # special stack is `duckietown`
-        if project_name == DUCKIETOWN_STACK:
-            # retrieve robot type from device
-            dtslogger.info(f'Waiting for robot "{robot}"...')
-            _, _, data = wait_for_service("DT::ROBOT_TYPE", robot)
-            rtype = data["type"]
-            dtslogger.info(f'Detected device type is "{rtype}".')
-            stack = f"{DUCKIETOWN_STACK}/{rtype}"
-            project_name = DUCKIETOWN_STACK
         # sanitize stack
         stack = stack if "/" in stack else f"{stack}/{DEFAULT_STACK}"
         # check stack
