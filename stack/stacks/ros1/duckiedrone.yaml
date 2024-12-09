@@ -1,4 +1,3 @@
-version: '3.2'
 services:
 
   # Driver nodes
@@ -69,21 +68,6 @@ services:
       - /data:/data
 
   # Functionalities nodes
-  altitude:
-    image: ${REGISTRY}/duckietown/dt-core:ente-${ARCH}
-    container_name: altitude
-    restart: unless-stopped
-    network_mode: host
-    environment:
-      DT_SUPERUSER: 1
-      DT_LAUNCHER: duckiedrone-altitude-node
-    volumes:
-      - /data/ramdisk/dtps:/dtps
-      # avahi socket
-      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
-      - /data:/data
-
-    # Functionalities nodes
   fly_commands_mux:
     image: ${REGISTRY}/duckietown/dt-core:ente-${ARCH}
     container_name: fly_commands_mux
